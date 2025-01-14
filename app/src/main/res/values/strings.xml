@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Dicoding Story App</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Ceritakan pengalaman menarik dan seru mu selama belajar bersama dicoding!</string>
+    <string name="title_welcome_page">Selamat datang di Dicoding Story!</string>
+    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Silahkan login terlebih dahulu ya</string>
+    <string name="title_login_page">Sudah siap untuk bercerita dengan dicoding?</string>
+    <string name="name">Nama</string>
+    <string name="message_main_page">Selamat Belajar di Dicoding.</string>
+    <string name="greeting">Halo %1$s,</string>
+    <string name="logout">Keluar Akun</string>
+    <string name="image_signup">Foto Sign UP</string>
+    <string name="image_login">Foto Login</string>
+    <string name="signup_success_message">Akun dengan email %1$s dan nama %2$s sudah jadi nih. Yuk, login dan belajar coding.</string>
+    <string name="signup_title">Yeah!</string>
+    <string name="signup_continue_button">Lanjut</string>
+    <string name="login_success_message">Anda berhasil login. Ayo segera bagikan cerita serumu!</string>
+    <string name="login_success_title">Yeah!</string>
+    <string name="login_continue_button">Lanjut</string>
+    <string name="login_error_message">Periksa email atau password Anda</string>
+    <string name="password_error">Password harus 8 karakter</string>
+    <string name="error_name_empty">Nama tidak boleh kosong</string>
+    <string name="error_invalid_email">Email tidak valid</string>
+    <string name="error_password_length">Password harus lebih dari 7 karakter</string>
+    <string name="preview_image_story">Foto Cerita</string>
+    <string name="add_story">Tambahkan Cerita</string>
+    <string name="gambar_detail">Gambar Detail</string>
+    <string name="password_validation">Password Harus Lebih dari 8 karakter</string>
+    <string name="email_validation">Email tidak valid</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="submit">Submit</string>
+    <string name="gambar_unggah_cerita">Gambar Unggah Cerita</string>
+    <string name="description">Deskripsi Cerita</string>
+    <string name="nama_pengguna">Nama Pengguna</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="story_app">Story App</string>
+    <string name="gambar">Gambar</string>
+    <string name="map">Map</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="data_not_loaded">Data Tidak Tersedia</string>
+    <string name="retry">Ulangi</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="story_location">Story Location</string>
+    <string name="tambahkan_lokasi_saat_ini">Tambahkan lokasi saat ini</string>
+</resources>

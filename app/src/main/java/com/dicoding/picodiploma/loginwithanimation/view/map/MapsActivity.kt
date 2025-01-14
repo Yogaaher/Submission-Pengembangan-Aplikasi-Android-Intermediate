@@ -1,0 +1,131 @@
+package com.dicoding.picodiploma.loginwithanimation.view.map
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.activity.viewModels
+import com.dicoding.picodiploma.loginwithanimation.R
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.dicoding.picodiploma.loginwithanimation.databinding.ActivityMapsBinding
+import com.dicoding.picodiploma.loginwithanimation.view.ViewModelFactory
+import com.dicoding.picodiploma.loginwithanimation.data.Result
+import com.dicoding.picodiploma.loginwithanimation.data.response.StoryItem
+import com.google.android.gms.maps.model.LatLngBounds
+
+@Suppress("DEPRECATION")
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+
+    private lateinit var mMap: GoogleMap
+    private lateinit var binding: ActivityMapsBinding
+
+    private val mapViewModel: MapViewModel by viewModels {
+        ViewModelFactory.getInstance(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityMapsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbarmaps)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Story Maps"
+        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, android.R.color.white))
+        toolbar.overflowIcon?.setTint(ContextCompat.getColor(this, android.R.color.white))
+
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isIndoorLevelPickerEnabled = true
+        mMap.uiSettings.isCompassEnabled = true
+        mMap.uiSettings.isMapToolbarEnabled = true
+
+        mapViewModel.getStoriesWithLocation().observe(this) {
+            if (it != null) {
+                when (it) {
+                    is Result.Success -> {
+                        binding.progressBar.visibility = android.view.View.GONE
+                        addManyMarker(it.data.listStory)
+                    }
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = android.view.View.VISIBLE
+                    }
+                    is Result.Error -> {
+                        binding.progressBar.visibility = android.view.View.GONE
+                        Toast.makeText(this, it.error, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private val boundsBuilder = LatLngBounds.Builder()
+
+    private fun addManyMarker(stories: List<StoryItem>) {
+        stories.forEach { tourism ->
+            val latLng = LatLng(tourism.lat, tourism.lon)
+            mMap.addMarker(MarkerOptions().position(latLng).title(tourism.name))
+            boundsBuilder.include(latLng)
+        }
+
+        val bounds: LatLngBounds = boundsBuilder.build()
+
+        mMap.animateCamera(
+            CameraUpdateFactory.newLatLngBounds(
+                bounds,
+                resources.displayMetrics.widthPixels,
+                resources.displayMetrics.heightPixels,
+                30
+            )
+        )
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            R.id.normal_type -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+                true
+            }
+            R.id.satellite_type -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                true
+            }
+            R.id.terrain_type -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+                true
+            }
+            R.id.hybrid_type -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.map_options, menu)
+        return true
+    }
+
+}

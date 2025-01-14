@@ -1,0 +1,10 @@
+<resources>
+    <!-- Base application theme -->
+    <style name="Base.Theme.LoginWithAnimation" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/navy</item>
+        <item name="colorPrimaryVariant">@color/gray</item>
+    </style>
+
+    <!-- Application theme -->
+    <style name="Theme.LoginWithAnimation" parent="Base.Theme.LoginWithAnimation" />
+</resources>
