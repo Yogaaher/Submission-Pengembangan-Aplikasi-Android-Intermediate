@@ -29,7 +29,7 @@ Repository ini dibuat sebagai referensi untuk **Kelas Dicoding Belajar Pengemban
 
 ## 🌟 Submission Rating
 
-⭐️⭐️⭐️⭐️⭐️
+⭐️⭐️⭐️⭐️
 
 Semoga repository ini dapat membantu Anda belajar dan menyelesaikan submission dengan sukses. Selamat coding! 😊
 
